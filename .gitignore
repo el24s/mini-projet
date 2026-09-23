@@ -1,0 +1,35 @@
+# Dossiers générés automatiquement par Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+# Builds du jeu
+[Bb]uild/
+[Bb]uilds/
+# Visual Studio / Rider
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+# Fichiers système
+.DS_Store
+Thumbs.db
+Desktop.ini
+# Fichiers temporaires
+*.tmp
+*.bak
+*.swp
+# Rapports de plantage
+sysinfo.txt
+# Fichiers compressés
+*.zip
+*.rar
