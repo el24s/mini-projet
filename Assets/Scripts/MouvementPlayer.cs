@@ -33,14 +33,24 @@ public class MouvementPlayer : MonoBehaviour
             Input.GetAxisRaw("Vertical")
         ).normalized;
 
-        // // Flip du personnage
-        // if (horizontal > 0)
+        // Flip du personnage
+        if (direction[0] > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (direction[0] < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        // haut et bas
+        // if (direction[1] > 0)
         // {
         //     transform.localScale = new Vector3(1, 1, 1);
         // }
-        // else if (horizontal < 0)
+        // else if (direction[1] < 0) 
         // {
-        //     transform.localScale = new Vector3(-1, 1, 1);
+        //     transform.localScale = new Vector3(-1, -1, 1);
         // }
 
         // // jump

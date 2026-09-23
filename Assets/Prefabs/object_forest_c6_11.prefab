@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4830625943079218589}
   - component: {fileID: 8445529823314694664}
   - component: {fileID: 5243276740273275210}
-  - component: {fileID: 986183725593586957}
   m_Layer: 0
   m_Name: object_forest_c6_11
   m_TagString: Crystal
@@ -138,17 +137,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6766667, y: 0.74}
   m_EdgeRadius: 0
---- !u!114 &986183725593586957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 562056729259905262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981e83721eb0fc241ba41d4305c02852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Collecteur
-  objectif: 6
-  porteSortie: {fileID: 0}

@@ -675,6 +675,7 @@ GameObject:
   - component: {fileID: 888538397}
   - component: {fileID: 888538396}
   - component: {fileID: 888538401}
+  - component: {fileID: 888538402}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -865,6 +866,20 @@ MonoBehaviour:
   vitesse: 5
   limiteMin: {x: -10, y: -6}
   limiteMax: {x: 10, y: 6}
+--- !u!114 &888538402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888538394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981e83721eb0fc241ba41d4305c02852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collecteur
+  objectif: 3
+  porteSortie: {fileID: 1892083978}
 --- !u!1 &940386018
 GameObject:
   m_ObjectHideFlags: 0
@@ -58741,10 +58756,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal
       objectReference: {fileID: 0}
-    - target: {fileID: 986183725593586957, guid: 662ad6871a737584ebd4446c0d187b99, type: 3}
-      propertyPath: porteSortie
-      value: 
-      objectReference: {fileID: 1892083978}
     - target: {fileID: 4830625943079218589, guid: 662ad6871a737584ebd4446c0d187b99, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.07
