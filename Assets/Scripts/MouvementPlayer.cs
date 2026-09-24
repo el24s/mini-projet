@@ -43,16 +43,6 @@ public class MouvementPlayer : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        // haut et bas
-        // if (direction[1] > 0)
-        // {
-        //     transform.localScale = new Vector3(1, 1, 1);
-        // }
-        // else if (direction[1] < 0) 
-        // {
-        //     transform.localScale = new Vector3(-1, -1, 1);
-        // }
-
         // // jump
         // if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         // {
