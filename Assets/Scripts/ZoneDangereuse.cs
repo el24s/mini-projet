@@ -16,6 +16,6 @@ public class ZoneDangereuse : MonoBehaviour
         }
 
         autre.transform.position = pointDepart.position;
-        Debug.Log("Le robot retourne au point de départ.");
+        Debug.Log("Le player retourne au point de départ Dommage!!");
     }
 }

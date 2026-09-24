@@ -7,7 +7,7 @@ using UnityEngine.UI;              // Composant Image de la barre de progression
 public class GestionJeu : MonoBehaviour
 {
     // Instance unique accessible depuis les autres scripts :
-    // GestionJeu.Instance.AjouterBatterie();
+    // GestionJeu.Instance.AjouterCrystal();
     //
     // static : la propriété appartient à la classe.
     // get : les autres scripts peuvent lire Instance.
@@ -16,9 +16,9 @@ public class GestionJeu : MonoBehaviour
 
     [Header("Progression")]
 
-    // Nombre de batteries nécessaires pour activer la sortie.
+    // Nombre de crystal nécessaires pour activer la sortie.
     // SerializeField rend ce champ privé configurable dans l'Inspector.
-    [SerializeField] private int objectifBatteries = 3;
+    [SerializeField] private int objectifcrystal = 3;
 
     // Nombre de vies au début de la partie.
     [SerializeField] private int viesInitiales = 3;
@@ -26,7 +26,7 @@ public class GestionJeu : MonoBehaviour
     [Header("Interface")]
 
     // Textes affichant la progression et les vies restantes.
-    [SerializeField] private TMP_Text texteBatteries;
+    [SerializeField] private TMP_Text textecrystal;
     [SerializeField] private TMP_Text texteVies;
 
     // Image dont le remplissage représente la progression.
@@ -38,7 +38,7 @@ public class GestionJeu : MonoBehaviour
 
     [Header("Niveau")]
 
-    // Porte activée lorsque l'objectif de batteries est atteint.
+    // Porte activée lorsque l'objectif de crystal est atteint.
     [SerializeField] private GameObject porteSortie;
 
     // Script du joueur permettant de désactiver ses commandes.
@@ -47,8 +47,8 @@ public class GestionJeu : MonoBehaviour
     // Script responsable des effets sonores.
     [SerializeField] private AudioJeu audioJeu;
 
-    // Nombre de batteries actuellement collectées.
-    private int batteriesCollectees;
+    // Nombre de crystal actuellement collectées.
+    private int crystalCollectees;
 
     // Nombre de vies restantes.
     private int vies;
@@ -60,9 +60,9 @@ public class GestionJeu : MonoBehaviour
     // => signifie ici : retourner la valeur de partieTerminee.
     public bool PartieTerminee => partieTerminee;
 
-    // Retourne true si le nombre de batteries est suffisant.
+    // Retourne true si le nombre de crystal est suffisant.
     // Cette condition est recalculée à chaque lecture de la propriété.
-    public bool ObjectifAtteint => batteriesCollectees >= objectifBatteries;
+    public bool ObjectifAtteint => crystalCollectees >= objectifcrystal;
 
     // Script déclenchant l'effet visuel lorsque le joueur perd une vie.
     [SerializeField] private EffetDegatsJoueur effetDegatsJoueur;
@@ -87,7 +87,7 @@ public class GestionJeu : MonoBehaviour
     {
         // Rétablit les valeurs de départ.
         vies = viesInitiales;
-        batteriesCollectees = 0;
+        crystalCollectees = 0;
         partieTerminee = false;
 
         // Cache les panneaux de fin de partie.
@@ -105,16 +105,16 @@ public class GestionJeu : MonoBehaviour
         audioJeu?.JouerLancement();
     }
 
-    // Ajoute des batteries au compteur.
+    // Ajoute des crystal au compteur.
     // Sans argument, la valeur ajoutée est 1 :
-    // AjouterBatterie() équivaut à AjouterBatterie(1).
-    public void AjouterBatterie(int valeur = 1)
+    // AjouterCrystal() équivaut à AjouterCrystal(1).
+    public void AjouterCrystal(int valeur = 1)
     {
         // Ignore la collecte si la partie est terminée.
         if (partieTerminee) return;
 
         // Augmente le compteur.
-        batteriesCollectees += valeur;
+        crystalCollectees += valeur;
 
         // Joue le son de collecte.
         audioJeu?.JouerCollecte();
@@ -122,7 +122,7 @@ public class GestionJeu : MonoBehaviour
         // Met à jour le compteur et la barre.
         ActualiserInterface();
 
-        // Vérifie si le joueur a suffisamment de batteries.
+        // Vérifie si le joueur a suffisamment de crystal.
         if (ObjectifAtteint)
         {
             // Rend la sortie visible et active.
@@ -164,7 +164,7 @@ public class GestionJeu : MonoBehaviour
     {
         // Refuse la victoire si :
         // - la partie est déjà terminée;
-        // - OU l'objectif de batteries n'est pas atteint.
+        // - OU l'objectif de crystal n'est pas atteint.
         // || signifie OU et ! signifie NON.
         if (partieTerminee || !ObjectifAtteint) return;
 
@@ -206,9 +206,9 @@ public class GestionJeu : MonoBehaviour
     // Synchronise les éléments de l'interface avec l'état du jeu.
     private void ActualiserInterface()
     {
-        // Exemple : "Batteries : 2/3".
-        texteBatteries.text =
-            $"Batteries : {batteriesCollectees}/{objectifBatteries}";
+        // Exemple : "crystal : 2/3".
+        textecrystal.text =
+            $"crystal : {crystalCollectees}/{objectifcrystal}";
 
         // Exemple : "Vies : 2".
         texteVies.text = $"Vies : {vies}";
@@ -224,8 +224,8 @@ public class GestionJeu : MonoBehaviour
             // (float)2 / 3 donne environ 0,67.
             //
             // Sinon, utilise 0 pour éviter une division par zéro.
-            barreProgression.fillAmount = objectifBatteries > 0
-                ? (float)batteriesCollectees / objectifBatteries
+            barreProgression.fillAmount = objectifcrystal > 0
+                ? (float)crystalCollectees / objectifcrystal
                 : 0f;
     }
 

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class EffetDegatsJoueur : MonoBehaviour
 {
-    [Header("Robot")]
+    [Header("Player")]
     [SerializeField]
-    private SpriteRenderer renduRobot;
+    private SpriteRenderer renduPlayer;
 
     [Header("Interface")]
     [SerializeField]
@@ -28,16 +28,18 @@ public class EffetDegatsJoueur : MonoBehaviour
     private Vector3 echelleInitiale;
     private Coroutine effetEnCours;
 
+    private Animator animator;
+
     private void Awake()
     {
-        if (renduRobot == null)
+        if (renduPlayer == null)
         {
-            renduRobot = GetComponent<SpriteRenderer>();
+            renduPlayer = GetComponent<SpriteRenderer>();
         }
 
-        if (renduRobot != null)
+        if (renduPlayer != null)
         {
-            couleurInitiale = renduRobot.color;
+            couleurInitiale = renduPlayer.color;
         }
 
         echelleInitiale = transform.localScale;
@@ -46,6 +48,8 @@ public class EffetDegatsJoueur : MonoBehaviour
         {
             flashEcran.alpha = 0f;
         }
+
+        animator = GetComponent<Animator>();
     }
 
     public void DeclencherEffet()
@@ -68,9 +72,9 @@ public class EffetDegatsJoueur : MonoBehaviour
 
         for (int i = 0; i < nombreClignotements; i++)
         {
-            if (renduRobot != null)
+            if (renduPlayer != null)
             {
-                renduRobot.color = couleurDegat;
+                renduPlayer.color = couleurDegat;
             }
 
             if (flashEcran != null)
@@ -80,9 +84,9 @@ public class EffetDegatsJoueur : MonoBehaviour
 
             yield return new WaitForSeconds(dureeEtape);
 
-            if (renduRobot != null)
+            if (renduPlayer != null)
             {
-                renduRobot.color = couleurInitiale;
+                renduPlayer.color = couleurInitiale;
             }
 
             if (flashEcran != null)
@@ -93,9 +97,9 @@ public class EffetDegatsJoueur : MonoBehaviour
             yield return new WaitForSeconds(dureeEtape);
         }
 
-        if (renduRobot != null)
+        if (renduPlayer != null)
         {
-            renduRobot.color = couleurInitiale;
+            renduPlayer.color = couleurInitiale;
         }
 
         if (flashEcran != null)
@@ -109,9 +113,9 @@ public class EffetDegatsJoueur : MonoBehaviour
 
     private void OnDisable()
     {
-        if (renduRobot != null)
+        if (renduPlayer != null)
         {
-            renduRobot.color = couleurInitiale;
+            renduPlayer.color = couleurInitiale;
         }
 
         if (flashEcran != null)
@@ -120,5 +124,34 @@ public class EffetDegatsJoueur : MonoBehaviour
         }
 
         transform.localScale = echelleInitiale;
+    }
+
+    // private IEnumerator DeclencherAnimationDegats
+
+    // collision avec ennemi
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ennemi"))
+        {
+            DeclencherEffet();
+            
+
+            if ( animator != null)
+            {
+                animator.SetTrigger("Attaque");    
+            }
+
+            if (GestionJeu.Instance != null)
+            {
+                GestionJeu.Instance.PerdreVie();
+            }
+
+            EffetAttaqueEnnemi effetEnnemi = collision.gameObject.GetComponent<EffetAttaqueEnnemi>();
+
+            if ( effetEnnemi != null)
+            {
+                effetEnnemi.Declencher();
+            }
+        }   
     }
 }
