@@ -12,7 +12,7 @@ public class PorteSortie : MonoBehaviour
         }
 
         // annoncer la réussite et faire disparaître le joueur.
-        Debug.Log(" Apparition dans la forêt enchantée!");
+        Debug.Log("Prochain Niveau");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         
         
