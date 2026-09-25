@@ -5,13 +5,14 @@ using UnityEngine;
 public class MouvementPlayerPlatformer : MonoBehaviour
 {
     [SerializeField] private float vitesse = 5f;
-    [SerializeField] private Vector2 limiteMin = new(-10f, -6f);
-    [SerializeField] private Vector2 limiteMax = new(10f, 6f);
+    // [SerializeField] private Vector2 limiteMin = new(-10f, -6f);
+    // [SerializeField] private Vector2 limiteMax = new(10f, 6f);
 
     private Rigidbody2D corps;
     private Animator animator;
-    private Vector2 direction;
-    private bool commandesActives = true;
+    private float direction;
+    private bool isGrounded = true;
+    private float jumpForce = 5f;
 
     private void Awake()
     {
@@ -21,55 +22,54 @@ public class MouvementPlayerPlatformer : MonoBehaviour
 
     private void Update()
     {
-        if (!commandesActives)
-        {
-            direction = Vector2.zero;
-            animator.SetBool("EnMouvement", false);
-            return;
-        }
+        // if (!commandesActives)
+        // {
+        //     direction = Vector2.zero;
+        //     animator.SetBool("EnMouvement", false);
+        //     return;
+        // }
 
-        direction = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
-        ).normalized;
+        direction = Input.GetAxisRaw("Horizontal");
+          
+        
 
         // Flip du personnage
-        if (direction[0] > 0)
+        if (direction > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if (direction[0] < 0)
+        else if (direction < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
         // // jump
-        // if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        // {
-        //     corps.linearVelocity = new Vector2(corps.linearVelocity.x, jumpForce);
-        // }
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            corps.linearVelocity = new Vector2(corps.linearVelocity.x, jumpForce);
+        }
 
-        animator.SetBool("EnMouvement", direction.sqrMagnitude > 0.01f);
+        animator.SetBool("EnMouvement", direction > 0.01f);
     }
 
     private void FixedUpdate()
     {
-        corps.linearVelocity = commandesActives ? direction * vitesse : Vector2.zero;
-        LimiterPosition();
+        corps.linearVelocity = new Vector2(direction * vitesse, corps.linearVelocity.y);
+        // LimiterPosition();
     }
 
     private void LimiterPosition()
     {
         Vector2 position = corps.position;
-        position.x = Mathf.Clamp(position.x, limiteMin.x, limiteMax.x);
-        position.y = Mathf.Clamp(position.y, limiteMin.y, limiteMax.y);
+        // position.x = Mathf.Clamp(position.x, limiteMin.x, limiteMax.x);
+        // position.y = Mathf.Clamp(position.y, limiteMin.y, limiteMax.y);
         corps.position = position;
     }
 
     public void DesactiverCommandes()
     {
-        commandesActives = false;
-        direction = Vector2.zero;
+        // commandesActives = false;
+        // direction = Vector2.zero;
         corps.linearVelocity = Vector2.zero;
         animator.SetBool("EnMouvement", false);
     }
