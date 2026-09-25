@@ -2,18 +2,16 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public class MouvementPlayer : MonoBehaviour
+public class MouvementPlayerPlatformer : MonoBehaviour
 {
     [SerializeField] private float vitesse = 5f;
-    // [SerializeField] private Vector2 limiteMin = new(-10f, -6f);
-    // [SerializeField] private Vector2 limiteMax = new(10f, 6f);
+    [SerializeField] private Vector2 limiteMin = new(-10f, -6f);
+    [SerializeField] private Vector2 limiteMax = new(10f, 6f);
 
     private Rigidbody2D corps;
     private Animator animator;
     private Vector2 direction;
     private bool commandesActives = true;
-    private bool isGrounded = true;
-    private float jumpForce = 5f;
 
     private void Awake()
     {
@@ -46,10 +44,10 @@ public class MouvementPlayer : MonoBehaviour
         }
 
         // // jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            corps.linearVelocity = new Vector2(corps.linearVelocity.x, jumpForce);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        // {
+        //     corps.linearVelocity = new Vector2(corps.linearVelocity.x, jumpForce);
+        // }
 
         animator.SetBool("EnMouvement", direction.sqrMagnitude > 0.01f);
     }
@@ -57,32 +55,16 @@ public class MouvementPlayer : MonoBehaviour
     private void FixedUpdate()
     {
         corps.linearVelocity = commandesActives ? direction * vitesse : Vector2.zero;
-        // LimiterPosition();
+        LimiterPosition();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void LimiterPosition()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        Vector2 position = corps.position;
+        position.x = Mathf.Clamp(position.x, limiteMin.x, limiteMax.x);
+        position.y = Mathf.Clamp(position.y, limiteMin.y, limiteMax.y);
+        corps.position = position;
     }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-    
-    // private void LimiterPosition()
-    // {
-    //     Vector2 position = corps.position;
-    //     position.x = Mathf.Clamp(position.x, limiteMin.x, limiteMax.x);
-    //     position.y = Mathf.Clamp(position.y, limiteMin.y, limiteMax.y);
-    //     corps.position = position;
-    // }
 
     public void DesactiverCommandes()
     {
