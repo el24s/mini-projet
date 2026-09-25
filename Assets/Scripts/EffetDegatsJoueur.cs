@@ -138,7 +138,7 @@ public class EffetDegatsJoueur : MonoBehaviour
 
             if ( animator != null)
             {
-                animator.SetTrigger("Attaque");    
+                animator.SetBool("EnAttaque", collision.gameObject.CompareTag("Ennemi"));    
             }
 
             if (GestionJeu.Instance != null)
