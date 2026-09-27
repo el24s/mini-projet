@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ground
   - Crystal
-  - Ennemi
   layers:
   - Default
   - TransparentFX
