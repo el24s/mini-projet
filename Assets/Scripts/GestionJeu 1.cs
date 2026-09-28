@@ -234,6 +234,6 @@ public class GestionJeu : MonoBehaviour
     {
         // Recharge la scène active à partir de son index.
         // Les objets de la scène sont recréés et la partie réinitialisée.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

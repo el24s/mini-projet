@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Collecteur
   objectif: 10
   porteSortie: {fileID: 1892083978}
+  crystalNumber: {fileID: 0}
 --- !u!95 &224894425
 Animator:
   serializedVersion: 7

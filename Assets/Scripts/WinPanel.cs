@@ -8,4 +8,9 @@ public class WinPanel : MonoBehaviour
         SceneManager.LoadScene("Niveau1");
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
 }

@@ -25,7 +25,7 @@ public class Collecteur : MonoBehaviour
         // ramasser la batterie et mettre le compteur à jour.
         crystalCollectees++;
         Debug.Log($"Crystal : {crystalCollectees}/{objectif}");
-        crystalNumber.text = crystalCollectees.ToString();
+        crystalNumber.text = "Cristaux: " + crystalCollectees.ToString()+ "/10";
         Destroy(autre.gameObject);
 
 

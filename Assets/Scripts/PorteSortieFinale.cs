@@ -15,9 +15,10 @@ public class PorteSortieFinale : MonoBehaviour
             return;
         }
 
+            
         // annoncer la réussite et faire disparaître le joueur.
         Debug.Log("SUCCESS tu as réussi le jeu");
         winManager.SetActive(true);
-
+        
     }
 }
