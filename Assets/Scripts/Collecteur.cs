@@ -1,9 +1,10 @@
 using UnityEngine;
-
+using TMPro;
 public class Collecteur : MonoBehaviour
 {
     [SerializeField] private int objectif = 3;
     [SerializeField] private GameObject porteSortie;
+    public TMP_Text crystalNumber;
 
     private int crystalCollectees = 0;
 
@@ -24,6 +25,7 @@ public class Collecteur : MonoBehaviour
         // ramasser la batterie et mettre le compteur à jour.
         crystalCollectees++;
         Debug.Log($"Crystal : {crystalCollectees}/{objectif}");
+        crystalNumber.text = crystalCollectees.ToString();
         Destroy(autre.gameObject);
 
 
