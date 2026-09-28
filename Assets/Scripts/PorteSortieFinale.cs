@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class PorteSortieFinale : MonoBehaviour
 {
-    public GameObject winManager;
+
+    
+    [SerializeField] public GameObject winManager;
 
     private void OnTriggerEnter2D(Collider2D autre)
     {
@@ -18,14 +20,4 @@ public class PorteSortieFinale : MonoBehaviour
         winManager.SetActive(true);
 
     }
-
-    /*
-     * BANQUE DE LIGNES — GROUPE B
-     * Replacez les lignes, puis ajoutez les accolades manquantes.
-     *
-     * 
-     * 
-     * 
-     * 
-     */
 }

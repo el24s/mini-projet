@@ -2,18 +2,25 @@ using UnityEngine;
 
 public class Ennemi : MonoBehaviour
 {
-    public float playerDamage = 0;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (playerDamage > 50)
+            Debug.Log("Player a été touché par l'ennemi");
+
+            HeartSystem heartSystem = FindFirstObjectByType<HeartSystem>();
+
+            if (heartSystem != null)
             {
-                Debug.Log("Player lost all his lives!");
+                heartSystem.TakeDamage(1);
+                
                 
             }
-            Debug.Log("Player hit enemy!");
-            playerDamage -= 10;
+            else
+            {
+                Debug.Log("Aucun HeartSystem trouvé dans la scène!");
+               
+            }
             
         }
     }

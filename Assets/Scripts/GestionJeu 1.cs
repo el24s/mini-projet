@@ -45,7 +45,7 @@ public class GestionJeu : MonoBehaviour
     [SerializeField] private MouvementPlayer joueur;
 
     // Script responsable des effets sonores.
-    [SerializeField] private AudioJeu audioJeu;
+    // [SerializeField] private AudioJeu audioJeu;
 
     // Nombre de crystal actuellement collectées.
     private int crystalCollectees;
@@ -102,7 +102,7 @@ public class GestionJeu : MonoBehaviour
 
         // Joue le son de lancement si audioJeu n'est pas null en C#.
         // ?. est l'opérateur d'accès conditionnel.
-        audioJeu?.JouerLancement();
+        // audioJeu?.JouerLancement();
     }
 
     // Ajoute des crystal au compteur.
@@ -117,7 +117,7 @@ public class GestionJeu : MonoBehaviour
         crystalCollectees += valeur;
 
         // Joue le son de collecte.
-        audioJeu?.JouerCollecte();
+        // audioJeu?.JouerCollecte();
 
         // Met à jour le compteur et la barre.
         ActualiserInterface();
@@ -129,7 +129,7 @@ public class GestionJeu : MonoBehaviour
             porteSortie.SetActive(true);
 
             // Joue le son indiquant que l'objectif est atteint.
-            audioJeu?.JouerObjectif();
+            // audioJeu?.JouerObjectif();
         }
     }
 
@@ -145,7 +145,7 @@ public class GestionJeu : MonoBehaviour
         vies = Mathf.Max(vies - 1, 0);
 
         // Joue le son d'impact.
-        audioJeu?.JouerImpact();
+        // audioJeu?.JouerImpact();
 
         // Déclenche l'effet visuel si le composant est disponible.
         if (effetDegatsJoueur != null)
@@ -178,7 +178,7 @@ public class GestionJeu : MonoBehaviour
         joueur.DesactiverCommandes();
 
         // Joue le son de victoire.
-        audioJeu?.JouerVictoire();
+        // audioJeu?.JouerVictoire();
     }
 
     // Termine la partie par une défaite.
@@ -196,7 +196,7 @@ public class GestionJeu : MonoBehaviour
         joueur.DesactiverCommandes();
 
         // Joue le son de défaite.
-        audioJeu?.JouerDefaite();
+        // audioJeu?.JouerDefaite();
     }
 
     // Méthode appelée par MinuterieJeu lorsque le temps atteint zéro.
